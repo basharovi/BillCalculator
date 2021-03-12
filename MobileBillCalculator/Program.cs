@@ -11,8 +11,11 @@ namespace MobileBillCalculator
                 var inputStartTime = Console.ReadLine();
                 var inputEndTime = Console.ReadLine();
 
-                var startTime = GetConvertedDateTime(inputStartTime);
-                var endTime = GetConvertedDateTime(inputEndTime);
+                var startTime = GetConvertedDateTime(inputStartTime, "Start");
+                var endTime = GetConvertedDateTime(inputEndTime, "End");
+
+                var billCalculationService = new BillCalculationService();
+                billCalculationService.CalculateBill(startTime, endTime);
 
             }
             catch (Exception ex)
@@ -21,9 +24,9 @@ namespace MobileBillCalculator
             }
         }
 
-        private static DateTime GetConvertedDateTime(string inputTime)
+        private static DateTime GetConvertedDateTime(string inputTime, string prefix)
         {
-            return Convert.ToDateTime(inputTime.Split(":")[1]);
+            return Convert.ToDateTime(inputTime.Replace($"{prefix} time:", string.Empty));
         }
     }
 }
