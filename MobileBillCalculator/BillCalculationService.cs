@@ -4,7 +4,7 @@ namespace MobileBillCalculator
 {
     public class BillCalculationService
     {
-        public void CalculateBill(DateTime startTime, DateTime endTime)
+        public decimal CalculateBill(DateTime startTime, DateTime endTime)
         {
             decimal generatedBill = 0;
             var countableTime = startTime;
@@ -14,12 +14,13 @@ namespace MobileBillCalculator
                 countableTime = countableTime.AddSeconds(Constants.Pulse);
                 generatedBill += GetThePulseRate(countableTime);
             }
+
+            return generatedBill.ConvertToTaka();
         }
 
         private int GetThePulseRate(DateTime theTime)
         {
             return theTime.IsPeekHour() ? 30 : 20;
         }
-
     }
 }

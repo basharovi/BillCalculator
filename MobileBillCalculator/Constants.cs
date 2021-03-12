@@ -13,5 +13,10 @@ namespace MobileBillCalculator
         {
             return dateTime.TimeOfDay >= PeekHourStartTime.TimeOfDay && dateTime.TimeOfDay <= PeekHourEndTime.TimeOfDay;
         }
+
+        public static decimal ConvertToTaka(this decimal paisa)
+        {
+            return paisa / 100;
+        }
     }
 }

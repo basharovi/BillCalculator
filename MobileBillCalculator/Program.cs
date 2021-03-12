@@ -15,7 +15,9 @@ namespace MobileBillCalculator
                 var endTime = GetConvertedDateTime(inputEndTime, "End");
 
                 var billCalculationService = new BillCalculationService();
-                billCalculationService.CalculateBill(startTime, endTime);
+                var generatedBill = billCalculationService.CalculateBill(startTime, endTime);
+
+                Console.WriteLine("{0} taka", generatedBill);
 
             }
             catch (Exception ex)
